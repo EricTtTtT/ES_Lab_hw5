@@ -14,35 +14,43 @@ PwmOut led(PA_15);
 int main()
 {
     // specify period first
-    led.period(0.05f);      // 4 second period
-    led.write(0.20f);      // 50% duty cycle, relative to period
+    // led.period(0.05f);      // 4 second period
+    // led.write(0.20f);      // 50% duty cycle, relative to period
     //led = 0.5f;          // shorthand for led.write()
     //led.pulsewidth(2);   // alternative to led.write, set duty cycle time in seconds
     // while (1);
 
-
-    // send S.O.S signal in MOS-code
+    float modes[5] = {0.05f, 0.1f, 0.2f, 0.4f, 0.7f};
     while (1) {
-        led.period(0.5f);
-        led.write(0.2f);
-        ThisThread::sleep_for(1500);
-        led.period(0.5f);
-        led.write(0.0f);
-        ThisThread::sleep_for(500);   
-
-        led.period(1.0f);
-        led.write(0.8f);
-        ThisThread::sleep_for(3500);  
-        led.period(0.5f);
-        led.write(0.0f);
-        ThisThread::sleep_for(500);   
-
-        led.period(0.5f);
-        led.write(0.2f);
-        ThisThread::sleep_for(1500);
-
-        led.period(0.5f);
-        led.write(0.0f);
-        ThisThread::sleep_for(2500);   
+        led.period(0.005f);
+        for (int i=0; i<5; ++i) {
+            led.write(modes[i]);
+            ThisThread::sleep_for(2000);
+        }
     }
+
+    // // send S.O.S signal in MOS-code
+    // while (1) {
+    //     led.period(0.5f);
+    //     led.write(0.2f);
+    //     ThisThread::sleep_for(1500);
+    //     led.period(0.5f);
+    //     led.write(0.0f);
+    //     ThisThread::sleep_for(500);   
+
+    //     led.period(1.0f);
+    //     led.write(0.8f);
+    //     ThisThread::sleep_for(3500);  
+    //     led.period(0.5f);
+    //     led.write(0.0f);
+    //     ThisThread::sleep_for(500);   
+
+    //     led.period(0.5f);
+    //     led.write(0.2f);
+    //     ThisThread::sleep_for(1500);
+
+    //     led.period(0.5f);
+    //     led.write(0.0f);
+    //     ThisThread::sleep_for(2500);   
+    // }
 }
