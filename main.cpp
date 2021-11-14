@@ -29,7 +29,7 @@ int main()
         }
     }
 
-    // // send S.O.S signal in MOS-code
+    // // send S.O.S signal in Morse code
     // while (1) {
     //     led.period(0.5f);
     //     led.write(0.2f);
